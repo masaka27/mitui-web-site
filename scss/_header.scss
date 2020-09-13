@@ -1,0 +1,106 @@
+@import 'variable';
+
+
+header {
+  overflow: hidden;
+  background-color: $skyblue;
+  color: $cWhite;
+  width: calc(100% - #{$side-nav-width});
+  position: fixed;
+  display: none;
+  a {
+    text-decoration: none;
+    color: $cWhite;
+  }
+}
+.header-inner {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+}
+.header-side {
+  width: $side-nav-width;
+  background-color: $skyblue;
+  height: 100vh;
+  flex-basis: $side-nav-width;
+  position: fixed;
+  right: 0;
+}
+nav {
+  position: relative;
+  flex: 1 1 auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  .header-bg-image {
+    width: 90%;
+    position: absolute;
+    bottom: -30px;
+    @include bg-img($size: contain, $position: bottom center);
+    background-image: url(#{$imgDir}nav-back-logo.svg);
+    height: calc(100% - 80px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+@mixin before-nav-arrow {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 20px;
+  height: 20px;
+  @include bg-img($size: contain);
+  background-image: url(#{$imgDir}nav-arrow.svg);
+}
+$nav-padding: 100% / 20;
+.nav-container {
+  width: 100%;
+  padding: 0 $nav-padding;
+  top: 15%;
+  position: absolute;
+  & > h1 {
+    margin-bottom: 47px;
+  }
+  .nav-outer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    & > li {
+      flex: 0 1 33.33%;
+      &:nth-child(1) > p,
+      &:nth-child(2) > p,
+      &:nth-child(4) > p {
+        position: relative;
+        padding-left: 25px;
+        &::before {
+          @include before-nav-arrow;
+        }
+      }
+      &:not(:last-child) {
+        margin-bottom: calc(100vw / 50);
+      }
+      & > p {
+        font-size: 2rem;
+        &:not(:last-child) {
+          margin-bottom: 16px;
+        }
+        & > a {
+          position: relative;
+          display: block;
+          padding-left: 25px;
+          &::before {
+            @include before-nav-arrow;
+          }
+        }
+      }
+    }
+  }
+}
+.nav-inner > li {
+  margin-bottom: 13px;
+}
