@@ -1,16 +1,24 @@
 @import 'variable';
+@import 'animation';
 
-
-header {
+.header {
   overflow: hidden;
   background-color: $skyblue;
   color: $cWhite;
   width: calc(100% - #{$side-nav-width});
   position: fixed;
-  display: none;
+  transform: translateX(-100%);
+  transition: 0.3s cubic-bezier(0.9, 0, 0, 1);
+  z-index: 9999;
+  // display: none;
   a {
     text-decoration: none;
     color: $cWhite;
+  }
+  &.nav-active {
+    // display: block;
+    transform: none;
+    // animation: nav-lide-anim;
   }
 }
 .header-inner {
@@ -28,6 +36,65 @@ header {
   flex-basis: $side-nav-width;
   position: fixed;
   right: 0;
+  z-index: 1;
+  &__inner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    .nav-btn {
+      width: 38px;
+      &:hover {
+        cursor: pointer;
+      }
+      .nav-btn-inner {
+        height: 18px;
+        position: relative;
+        & > span {
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          background-color: #fff;
+          display: block;
+          transition: 0.3s cubic-bezier(0.9, 0, 0, 1);
+          &:nth-child(2),
+          &:nth-child(3) {
+            width: 80%;
+          }
+          &:nth-child(2) {
+            top: 8px;
+          }
+          &:nth-child(3) {
+            bottom: 0;
+          }
+        }
+      }
+      .nav-btn-txt {
+        width: 80%;
+      }
+    }
+  }
+}
+.nav-btn.burger-open {
+  .nav-btn-inner {
+    position: relative;
+    & > span {
+      // left: -8px;
+      &:nth-child(1) {
+        opacity: 0;
+      }
+      &:nth-child(2) {
+        transform: rotate(-45deg) translate(-6px, 4px);
+        top: 0;
+        // left: -8px;
+      }
+      &:nth-child(3) {
+        transform: rotate(45deg) translate(-6px, -6px);
+        // left: -8px;
+      }
+    }
+  }
 }
 nav {
   position: relative;
@@ -36,7 +103,7 @@ nav {
   display: flex;
   justify-content: center;
   .header-bg-image {
-    width: 90%;
+    width: 80%;
     position: absolute;
     bottom: -30px;
     @include bg-img($size: contain, $position: bottom center);
@@ -61,10 +128,11 @@ $nav-padding: 100% / 20;
 .nav-container {
   width: 100%;
   padding: 0 $nav-padding;
-  top: 15%;
+  top: 10%;
   position: absolute;
   & > h1 {
-    margin-bottom: 47px;
+    margin-bottom: 30px;
+    width: 340px;
   }
   .nav-outer {
     display: flex;
@@ -82,7 +150,7 @@ $nav-padding: 100% / 20;
         }
       }
       &:not(:last-child) {
-        margin-bottom: calc(100vw / 50);
+        margin-bottom: 20px;
       }
       & > p {
         font-size: 2rem;

@@ -4,17 +4,19 @@
 @import 'header';
 @import 'btn';
 
-@include mq-down(xl){
+@include mq-down(xl) {
   body {
     // background-color: red;
   }
 }
-
+.global-container {
+  overflow: hidden;
+}
 .container {
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  @include mq-down(ll){
+  @include mq-down(ll) {
     max-width: 1000px;
   }
 }
@@ -37,7 +39,7 @@ p {
   &__contents {
     @include bg-img();
     background-image: url(#{$imgDir}top-hero-dammy.png);
-    height: 100%;
+    height: 92%;
   }
 }
 
@@ -48,8 +50,15 @@ p {
   margin-top: $m;
   margin-bottom: $m;
   li {
-    flex: 0 1 30%;
+    & > a {
+      display: block;
+      color: #5a5a5a;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
     position: relative;
+    flex: 0 1 30%;
     &:not(:last-child) {
       &::after {
         position: absolute;
@@ -66,6 +75,9 @@ p {
 .news-img,
 .news-date {
   margin-bottom: $s;
+  span {
+    margin-left: 20px;
+  }
 }
 .content-innner {
   padding: $l;
@@ -136,8 +148,14 @@ $transition: 0.5s;
     }
   }
 }
+.footer-top {
+  .btn:hover {
+    color: $cTitle;
+  }
+}
+
 .aboutus-inner {
-  padding: $l * 3 0;
+  padding: 0;
   text-align: center;
   .aboutus-logo {
     width: 74px;
@@ -146,8 +164,8 @@ $transition: 0.5s;
   h2 {
     font-size: 3rem;
     font-weight: bold;
-    margin-bottom: $m;
-    margin-top: $s * 2;
+    margin-bottom: $m * 0.8;
+    margin-top: $s * 0.4;
   }
   p {
     text-align: center;
@@ -163,13 +181,37 @@ $bg-height: 100vw;
     background-image: url(../images/top-aboutus-bg.png);
     width: 100%;
     height: $bg-height / 7.7;
-    top: 23%;
+    top: -4%;
     left: 50%;
     transform: translate(-50%, 0);
   }
 }
 .section {
   margin-bottom: $mb-100 * 2;
+  &.section1 {
+    margin-bottom: 0;
+    position: relative;
+    top: -100px;
+    & > .container {
+      background-color: #fff;
+    }
+  }
+  &.section2 {
+    margin-bottom: $mt-100;
+  }
+  &.section3 {
+    margin-bottom: $mb-100 * 2;
+    @include mq-down(xl) {
+      // margin-bottom: $mb-100 * 2;
+    }
+  }
+  &.service-wapper {
+    margin-bottom: $mb-100 * 1.6;
+  }
+  &.section6,
+  &.recruit-wapper {
+    margin-bottom: $mb-100 * 0.9;
+  }
 }
 $about-width: 540px;
 .section-contents__inner {
@@ -178,7 +220,10 @@ $about-width: 540px;
   padding: $xl;
   margin-top: $xll;
   background-color: #fff;
-  @include mq-down(ll){
+  @include mq-down(xl) {
+    // margin-top: $xll * 2;
+  }
+  @include mq-down(ll) {
     padding: $xl * 0.7;
     margin-top: $xll * 0.7;
     width: $about-width * 0.85;
@@ -190,12 +235,12 @@ $about-width: 540px;
       height: 100%;
       width: auto;
     }
-    span {
-      color: $cTitle;
-      font-size: 1.8rem;
-      display: block;
-      margin-top: $xs * 0.7;
-    }
+    // span {
+    //   color: $cTitle;
+    //   font-size: 1.8rem;
+    //   // display: block;
+    //   margin-top: $xs * 0.7;
+    // }
   }
   h3 {
     font-size: 2.8rem;
@@ -215,13 +260,19 @@ $about-width: 540px;
     }
   }
 }
+.sub-copy {
+    color: $cTitle;
+    font-size: 1.8rem;
+    // display: block;
+    margin-top: $xs * 0.7;
+}
 .section4__inner {
   .section-contents__inner {
     padding-top: $xl * 1.2;
     padding-bottom: $xl * 1.2;
   }
 }
-$bg-about-height: 562px;
+$bg-about-height: 100px;
 .section3 {
   position: relative;
   &::before {
@@ -229,9 +280,13 @@ $bg-about-height: 562px;
     position: absolute;
     @include bg-img();
     background-image: url(#{$imgDir}top_main1.jpg);
-    min-height: $bg-about-height;
+    min-height: $bg-about-height * 5.6;
     width: 100%;
     z-index: -1;
+    @include mq-down(xl) {
+      // height: $bg-about-height * 7.5;
+      // min-height: $bg-about-height * 7.5;
+    }
   }
 }
 .section-bg-img {
@@ -247,14 +302,21 @@ $bg-about-height: 562px;
     background-position: top right;
   }
 }
-.section4 {
+.service {
   .section-bg-img {
     position: relative;
     &::before {
-      width: 430px;
+      width: 370px;
       right: inherit;
-      left: 18%;
-      top: $l * 2;
+      left: 11%;
+      top: 11%;
+    }
+  }
+}
+.recruit-wapper {
+  .section-bg-img {
+    &::before {
+      right: -17%;
     }
   }
 }
@@ -336,15 +398,14 @@ $section6-width: 755px;
   & > div {
     flex: 0 1 50%;
     &:nth-child(2) {
-      flex: 0 1 40%
+      flex: 0 1 40%;
     }
   }
 }
 
 .section7 {
   margin-bottom: 300px;
-}    
-
+}
 
 $section7-height: 283px;
 .section7__inner {
@@ -356,7 +417,6 @@ $section7-height: 283px;
     height: 100%;
     li {
       flex: 0 1 50%;
-      padding: $l;
       &:nth-child(1) {
         @include bg-img();
       }
@@ -366,25 +426,44 @@ $section7-height: 283px;
       &:nth-child(2) {
         background-image: url(#{$imgDir}top_main4_2.jpg);
       }
-      p {
-        font-size: 1.8rem;
-      }
-      h2 {
-        position: relative;
-        height: 27px;
-        width: auto;
-        margin-top: $s;
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: -25px;
-          left: 0;
-          width: 45px;
-          height: 2px;
-          background-color: #fff;
+      a {
+        padding: $l;
+        display: block;
+        color: #fff;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        &:hover {
+          h2 {
+            &::after {
+              width: 135px;
+            }
+          }
         }
-        img {
+        p {
+          font-size: 1.8rem;
+        }
+        h2 {
+          position: relative;
+          height: 27px;
           width: auto;
+          margin-top: $s;
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            width: 45px;
+            height: 2px;
+            background-color: #fff;
+            transition: 0.3s;
+          }
+          img {
+            width: auto;
+          }
         }
       }
     }
@@ -403,7 +482,7 @@ footer {
   height: 826px;
 }
 .service {
-  // background-color: yellow;
+  background-color: #fff;
   position: absolute;
   right: 5vw;
   top: 0;
@@ -417,6 +496,9 @@ footer {
   margin: 0 auto;
   right: -5vw;
   width: 1200px;
+  @include mq-down(ll) {
+    padding-left: 100px;
+  }
 }
 .service-inner {
   display: flex;
@@ -433,6 +515,7 @@ footer {
 $recruit-width: 1100px;
 $recruit-margin: 100px;
 .recruit-container {
+  background-color: #fff;
   float: right;
   width: $recruit-width;
   .recruit-inner {
@@ -483,6 +566,7 @@ footer {
     }
   }
   & > div:nth-child(2) {
+    width: 340px;
     p {
       font-size: 1.3rem;
       text-align: right;
@@ -507,6 +591,37 @@ footer {
       border-style: solid;
       border-width: 0 0 400px calc(100vw - #{$side-nav-width});
       border-color: transparent transparent $cTitle transparent;
+    }
+  }
+  &.bg-diagonal {
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 600px 600px 0 0;
+      border-color: #ffffff transparent transparent transparent;
+      transform: rotate(0deg);
+      top: -290px;
+      left: 0;
+      z-index: 0;
+      @include mq-down(xl) {
+        top: -515px;
+      }
+    }
+    &::after {
+      @extend .diagonal.bg-diagonal::before;
+      left: inherit;
+      transform: rotate(-180deg);
+      right: 0;
+      top: inherit;
+      bottom: 0;
+      @include mq-down(xl) {
+        // right: 0;
+        // top: inherit;
+        // bottom: 0;
+      }
     }
   }
 }
@@ -534,4 +649,54 @@ $footer-top-width: 410px;
 .btn-type-b {
   border: 1px solid #fff;
   background-color: transparent;
+}
+.btn-type-c {
+  border: 2px solid #f7a9a9;
+  background-color: transparent;
+  color: #f7a9a9;
+  width: inherit;
+  display: inline;
+  padding: 5px 12px;
+  pointer-events: none;
+}
+$top-bg-height: 1000px;
+.top-bg {
+  // display: none;
+  &.top-bg-1 {
+    // top: -7vw;
+    top: 170px;
+    position: relative;
+    @include mq-down(xl) {
+      // top: 170px;
+    }
+  }
+  &__inner {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      @include bg-img();
+      background-image: url(#{$imgDir}top-bg1.jpg);
+      width: 100%;
+      height: $top-bg-height * 1.02;
+      top: -280px;
+      opacity: 0.5;
+      z-index: -1;
+      @include mq-down(xl) {
+        height: $top-bg-height * 1.25;
+        top: -510px;
+      }
+    }
+  }
+  &.top-bg-2 {
+    & .top-bg__inner {
+      &::before {
+        @extend .top-bg__inner::before;
+        background-image: url(#{$imgDir}top-bg2.jpg);
+        height: 1300px;
+        top: -350px;
+        background-position: top center;
+      }
+    }
+  }
 }
