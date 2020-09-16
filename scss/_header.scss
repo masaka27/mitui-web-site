@@ -155,7 +155,7 @@ $nav-padding: 100% / 20;
       & > p {
         font-size: 2rem;
         &:not(:last-child) {
-          margin-bottom: 16px;
+          margin-bottom: 12px;
         }
         & > a {
           position: relative;
@@ -169,6 +169,30 @@ $nav-padding: 100% / 20;
     }
   }
 }
-.nav-inner > li {
-  margin-bottom: 13px;
+.nav-inner {
+  & > li {
+    margin-bottom: 10px;
+    opacity: 0;
+    a {
+      position: relative;
+      display: inline-block;
+      &::after {
+        position: absolute;
+        content: '';
+        width: 0;
+        // transform: scaleX(0);
+        height: 1px;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        transition: 0.3s ease-in-out;
+      }
+      &:hover {
+        &::after {
+          width: 100%;
+          // transform: scaleX(1);
+        }
+      }
+    }
+  }
 }

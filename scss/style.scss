@@ -2,7 +2,9 @@
 @import 'font';
 @import 'variable';
 @import 'header';
+@import 'footer';
 @import 'btn';
+@import 'animation';
 
 @include mq-down(xl) {
   body {
@@ -148,12 +150,6 @@ $transition: 0.5s;
     }
   }
 }
-.footer-top {
-  .btn:hover {
-    color: $cTitle;
-  }
-}
-
 .aboutus-inner {
   padding: 0;
   text-align: center;
@@ -246,25 +242,25 @@ $about-width: 540px;
     font-size: 2.8rem;
     font-weight: bold;
     color: #000;
-    margin-top: $l * 3;
+    margin-top: $l * 2.5;
   }
   p {
     font-size: 1.5rem;
     margin-top: $xm;
     margin-bottom: $xs;
     &.m-fix {
-      margin-bottom: $xs * 5;
+      margin-bottom: $xs * 3.5;
     }
     &.servece-mb {
-      margin-bottom: $xs * 3.5;
+      margin-bottom: $xs * 2.2;
     }
   }
 }
 .sub-copy {
-    color: $cTitle;
-    font-size: 1.8rem;
-    // display: block;
-    margin-top: $xs * 0.7;
+  color: $cTitle;
+  font-size: 1.8rem;
+  // display: block;
+  margin-top: $xs * 0.7;
 }
 .section4__inner {
   .section-contents__inner {
@@ -383,28 +379,32 @@ $service-img-heigth: 300px;
 }
 $section6-width: 755px;
 .section6__inner {
-  padding: $l;
-  width: $section6-width;
-  background-color: #fff;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  p {
-    color: $cTitle;
-    font-size: 1.5rem;
-    margin-bottom: $s;
-  }
-  & > div {
-    flex: 0 1 50%;
-    &:nth-child(2) {
-      flex: 0 1 40%;
+  a {
+    padding: $l;
+    width: $section6-width;
+    background-color: #fff;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      color: $cTitle;
+      font-size: 1.5rem;
+      margin-bottom: $s;
+    }
+    & > div {
+      flex: 0 1 50%;
+      &:nth-child(2) {
+        flex: 0 1 40%;
+      }
     }
   }
 }
 
 .section7 {
   margin-bottom: 300px;
+  position: relative;
+  z-index: 1;
 }
 
 $section7-height: 283px;
@@ -417,15 +417,32 @@ $section7-height: 283px;
     height: 100%;
     li {
       flex: 0 1 50%;
-      &:nth-child(1) {
+      position: relative;
+      overflow: hidden;
+      &::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: 0.5s ease-in-out;
         @include bg-img();
       }
-      &:nth-child(1) {
+      &:hover::after {
+        transform: scale(1.1);
+      }
+      &:nth-child(1)::after {
         background-image: url(#{$imgDir}top_main4_1.jpg);
       }
-      &:nth-child(2) {
+      &:nth-child(2)::after {
         background-image: url(#{$imgDir}top_main4_2.jpg);
       }
+      &::before {
+        // @extend li::after;
+      }
+
       a {
         padding: $l;
         display: block;
@@ -469,13 +486,7 @@ $section7-height: 283px;
     }
   }
 }
-footer {
-  background-color: $cTitle;
-  color: #fff;
-  a {
-    color: #fff;
-  }
-}
+
 .service-wapper {
   // background-color: pink;
   position: relative;
@@ -526,53 +537,6 @@ $recruit-margin: 100px;
   }
 }
 
-footer {
-  @extend .main;
-  .container {
-    padding: 0 0 $l 0;
-  }
-  .nav-outer {
-    display: flex;
-    justify-content: space-between;
-    & > li {
-      p {
-        font-size: 1.3rem;
-        margin-bottom: $s;
-      }
-      &:last-child {
-        .nav-inner {
-          font-size: 1.3rem;
-        }
-      }
-      &:not(:last-child) {
-        .nav-inner {
-          border-left: 1px solid #fff;
-        }
-      }
-      .nav-inner {
-        font-size: 1rem;
-        padding-left: $s;
-      }
-    }
-  }
-}
-.footer__copy {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  & > div:nth-child(1) {
-    p {
-      font-size: 1rem;
-    }
-  }
-  & > div:nth-child(2) {
-    width: 340px;
-    p {
-      font-size: 1.3rem;
-      text-align: right;
-    }
-  }
-}
 .diagonal {
   position: relative;
   // overflow-x: hidden;
@@ -625,27 +589,7 @@ footer {
     }
   }
 }
-$footer-top-width: 410px;
-.footer-top {
-  width: $footer-top-width;
-  top: -140px;
-  position: absolute;
-  right: 0;
-  .btn {
-    width: 100%;
-  }
-  & > ul {
-    font-weight: bold;
-    font-size: 1.9rem;
-    display: flex;
-    margin-top: $s;
-    & li {
-      &:last-child {
-        margin-left: $s * 2;
-      }
-    }
-  }
-}
+
 .btn-type-b {
   border: 1px solid #fff;
   background-color: transparent;

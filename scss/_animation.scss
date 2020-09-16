@@ -55,3 +55,42 @@
     left: 0;
   }
 }
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade {
+  opacity: 0;
+  transition: all 0.5s ease;
+  &.fade-up {
+    transform: translateY(50px);
+  }
+  &.fade-down {
+    transform: translateY(-50px);
+  }
+  &.fade-right {
+    transform: translateX(50px);
+  }
+  &.fade-left {
+    transform: translateX(-50px);
+  }
+  &.fade-rotate {
+    transition: 1s;
+    transform: translateY(50px) rotate(365deg);
+  }
+  &.fade-scale {
+    transition: 1s;
+    transform: scale(0);
+  }
+  &.active {
+    opacity: 1;
+    transform: none;
+  }
+}
