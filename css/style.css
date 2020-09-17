@@ -496,8 +496,14 @@ nav .header-bg-image {
 }
 
 .nav-inner > li {
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   opacity: 0;
+}
+
+@media screen and (max-width: 1400px) {
+  .nav-inner > li {
+    margin-bottom: 5px;
+  }
 }
 
 .nav-inner > li a {

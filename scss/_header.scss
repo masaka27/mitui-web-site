@@ -171,8 +171,11 @@ $nav-padding: 100% / 20;
 }
 .nav-inner {
   & > li {
-    margin-bottom: 10px;
+    margin-bottom: 7px;
     opacity: 0;
+    @include mq-down(ll){
+      margin-bottom: 5px;
+    }
     a {
       position: relative;
       display: inline-block;

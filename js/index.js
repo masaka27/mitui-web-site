@@ -1,3 +1,5 @@
+gsap.registerPlugin(ScrollTrigger);
+
 //nav-menu-animation
 const navSlide = () => {
   const burger = document.querySelector('.nav-btn');
@@ -32,6 +34,8 @@ fade.forEach((act, i) => {
     start: 'top 80%',
     // end: 'bottom top',
     markers: false,
+    once: false
+    // toggleActions: 'play none none none'
   });
 });
 
@@ -44,6 +48,8 @@ reverl.forEach((txt, i) => {
     start: 'top 80%',
     end: 'bottom top',
     markers: false,
+    once: false
+    // toggleActions: 'play none none none'
   });
 });
 //img-animation
@@ -55,13 +61,16 @@ images.forEach((img, i) => {
     start: 'top 80%',
     end: 'bottom top',
     markers: false,
+    once: false
+    // toggleActions: 'play none none none'
   });
 });
 // firstview opening animation
 const timeline = gsap.timeline({ defaults: { duration: 1 } });
 timeline
   .from('.header-side', { x: '100%', ease: 'power2.in' })
-  .from('.hero-container', { x: '-100%', ease: 'elastic.out(1, 0.3)' })
+  // .from('.hero-container', { x: '-100%', ease: 'elastic.out(1, 0.3)' })
+  .from('.hero-container', { opacity: '0', x: '-50', ease: 'Power2.easeOut'})
   .from('.section1', { y: '100px', ease: 'bounce' });
 
 // sprit text animation
